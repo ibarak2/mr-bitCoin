@@ -1,0 +1,34 @@
+// Colors
+$clr1: #585858;
+$clr2: #C4FFFE;
+$clr3: #79C8C7;
+$clr4: #2C6269;
+$clr5: #014E56;
+$clr6: #012F34;
+$clr7: #F67E7E;
+
+
+// Breakpoints
+$mobile-breakpoint: 600px;
+$narrow-breakpoint: 900px;
+$normal-breakpoint: 1160px;
+
+$grid_gutters: (
+  xs: 6px,
+  sm: 8px,
+  md: 8px,
+  lg: 16px,
+  xl: 16px,
+);
+
+$grid_layouts: 12, 15;
+$grid_breakpoints: "sm", "md", "lg", "xl";
+
+$page_max_width: 1400px;
+$padding_min: 24px;
+$padding_min_double: 48px;
+$padding_max: 32px;
+$padding_max_double: 64px;
+
+$carousel_left_arrow: "https://res.cloudinary.com/dalkffrhf/image/upload/v1663368594/Fiverr-Sprint-4/imgs/arrows/icons8-chevron-left-26_rucfc5.png";
+$carousel_right_arrow: "https://res.cloudinary.com/dalkffrhf/image/upload/v1663368594/Fiverr-Sprint-4/imgs/arrows/icons8-chevron-right-26_iee4op.png";
