@@ -10,7 +10,7 @@
 
 .main-container {
   display: grid;
-  grid-template-columns: 165px 1fr 165px;
+  grid-template-columns: 1fr 1250px 1fr;
 
   > * {
     grid-column: 2;
