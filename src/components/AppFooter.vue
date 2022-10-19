@@ -1,9 +1,11 @@
 <template>
   <section class="main-container main-footer">
-    <div class="flex column justify-center">
-      <span class="logo">Mr-Bitcoin</span>
-      <span>© 2022 Mr-Bitcoin</span>
-      <div class="social-network">
+    <div class="flex space-between align-center">
+      <div class="flex column">
+        <span class="logo">Mr-Bitcoin</span>
+        <span>© 2022 Mr-Bitcoin</span>
+      </div>
+      <div class="flex social-network">
         <a href="" target="_blank">Facebook</a>
         <a href="" target="_blank">Github</a>
         <a href="" target="_blank">LinkedIn</a>
@@ -13,8 +15,9 @@
 </template>
 
 <script>
-
-export default {}
+export default {
+  
+}
 </script>
 
 <style lang="scss" scoped>
@@ -29,5 +32,8 @@ export default {}
   color: #0052FF;
   font-size: 1.7em;
   font-weight: bold;
+ }
+ .social-network{
+  gap: 2em;
  }
 </style>
