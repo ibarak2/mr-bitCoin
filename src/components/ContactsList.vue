@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="contact-list">
     <p>Contacts list</p>
   </section>
 </template>
