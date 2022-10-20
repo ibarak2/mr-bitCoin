@@ -1,6 +1,5 @@
 <template>
   <section class="user-dashboard">
-    <!-- <h1>User Dashboard</h1> -->
     <Dashboard />
   </section>
 </template>

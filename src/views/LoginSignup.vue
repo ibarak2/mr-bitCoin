@@ -14,13 +14,13 @@
           <form class="login-form">
             <label for="username" class="login-label">Username</label>
             <input id="username" type="text" placeholder="Username" required />
-            <label for="password" class="login-label">Password</label>
-            <input
+            <!-- <label for="password" class="login-label">Password</label> -->
+            <!-- <input
               id="password"
               type="password"
               placeholder="Password"
               required
-            />
+            /> -->
             <button>Login</button>
           </form>
 
