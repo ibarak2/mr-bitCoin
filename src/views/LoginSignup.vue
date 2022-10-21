@@ -11,9 +11,9 @@
       <div class="flex login-modal-wrapper">
         <div class="flex login-modal">
           <h1 class="login-title">Welcome Back!</h1>
-          <form class="login-form">
+          <form v-on:submit="onLogin" class="login-form">
             <label for="username" class="login-label">Username</label>
-            <input id="username" type="text" placeholder="Username" required />
+            <input v-model="username" id="username" type="text" placeholder="Username" required />
             <!-- <label for="password" class="login-label">Password</label> -->
             <!-- <input
               id="password"
@@ -68,7 +68,25 @@
 </template>
 
 <script>
-export default {}
+import router from '../router';
+import { userService } from '../services/user-service';
+
+export default {
+  data() {
+    return {
+      username: ''
+    }
+  },
+  methods: {
+    async onLogin() {
+      const username = this.username
+      await userService.login(username)
+      this.$store.dispatch({type: "setUser", username})
+
+      router.push('/')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
