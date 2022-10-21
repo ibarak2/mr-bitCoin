@@ -1,13 +1,20 @@
 <template>
   <section>
-    <p>Contact Preview</p>
+    <div>
+      {{ contact }}
+    </div>
   </section>
 </template>
 
 <script>
-
-export default {}
+export default {
+  props: {
+    contact: {
+      type: Object,
+      required: true,
+    },
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
