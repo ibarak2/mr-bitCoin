@@ -39,6 +39,7 @@ export default {
     border-bottom: 1px solid lightgray;
     scroll-snap-align: center;
     cursor: pointer;
+    height: 72px;
 
     &:hover {
       background-color: #e8e8e8;
