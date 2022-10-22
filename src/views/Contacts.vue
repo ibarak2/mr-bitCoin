@@ -1,5 +1,6 @@
 <template>
   <section class="flex contacts-page">
+    <button class="add-con"><RouterLink :to="/contacts/edit">Add new contact</RouterLink></button>
     <div class="contacts-list">
       <contacts-list :contacts="filteredContacts"/>
     </div>
@@ -70,7 +71,7 @@ export default {
   align-items: center;
   flex: 1;
   .contacts-list {
-    height: 498px;
+    height: 500px;
     overflow-y: auto;
     flex: 0.4;
     scroll-snap-type: y mandatory;
@@ -82,7 +83,7 @@ export default {
     flex: 0.6;
     border: 1px solid lightgray;
     border-radius: 0 10px 10px 0;
-    height: 498px;
+    height: 500px;
   }
 }
 </style>

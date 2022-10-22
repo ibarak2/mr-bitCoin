@@ -71,7 +71,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff77;
-  height: 100%;
+  height: 500px;
 
   > * {
     margin: 0;

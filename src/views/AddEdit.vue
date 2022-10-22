@@ -1,14 +1,18 @@
 <template>
   <section class="flex add-edit-contact-wrapper">
     <form class="add-edit-contact">
+      <h1 class="edit-title">Contact info</h1>
       <img
         src="https://res.cloudinary.com/dalkffrhf/image/upload/v1666183736/mr-bitcoin/bitcoin_m1up6x.png"
         class="contact-avatar"
       />
       <div v-if="contact" class="flex contact-inputs">
-        <input v-model="contact.name" type="text" placeholder="Name" />
-        <input v-model="contact.email" type="text" placeholder="Email" />
-        <input v-model="contact.phone" type="text" placeholder="Phone" />
+        <span for="name" class="input-span">Name</span>
+        <input type="text" placeholder="Puki" v-model="contact.name" />
+        <span for="email" class="input-span">Email</span>
+        <input type="text" placeholder="puki@benDavid.com" v-model="contact.email" />
+        <span for="phone" class="input-span">Phone</span>
+        <input type="text" placeholder="054-1234567" v-model="contact.phone" />
       </div>
     <div v-else>Loding...</div>
 
@@ -51,28 +55,39 @@ export default {
 <style lang="scss" scoped>
 .add-edit-contact-wrapper {
   height: calc(100vh - 215px);
-  border: 1px solid gold;
 
   .add-edit-contact {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
+    width: 100%;
+    height: 500px;
     margin: auto;
-    gap: 1rem;
+    gap: 2rem;
     padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 10px;
 
+    .edit-title {
+      grid-area: 1 / 1 / 2 / 3;
+      justify-self: center;
+      text-align: center;
+      align-self: flex-end;
+    }
+
     .contact-avatar {
-      grid-area: 1 / 1 / 2 / 2;
+      grid-area: 2 / 1 / 3 / 2;
+      justify-self: end;
     }
     .contact-inputs {
-      grid-area: 1 / 2 / 2 / 3;
-      flex-direction: column;
-      gap: 1rem;
-
+      grid-area: 2 / 2 / 3 / 3;
+      gap: 0.5rem;
+      display: grid;
+      grid-template-columns: 45px 150px;
+      width: 300px;
+      justify-self: start;
       > * {
         outline: none;
         border: 1px solid lightgray;
@@ -82,26 +97,38 @@ export default {
           border: 1px solid black;
         }
       }
+      input::placeholder {
+        color: rgb(212, 212, 212);
+      }
+      .input-span {
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
     }
     .btn-save {
-      grid-area: 2 / 2 / 3 / 2;
+      grid-area: 3 / 2 / 4 / 3;
       padding: 20px 60px;
       border-radius: 10px;
       transition: all 0.3s;
       font-size: 1rem;
       font-weight: 600;
+      justify-self: start;
+
       &:hover {
         background-color: darken(cyan, 10%);
         scale: 105%;
       }
     }
     .btn-cancel {
-      grid-area: 2 / 1 / 3 / 2;
+      grid-area: 3 / 1 / 4 / 2;
       background-color: transparent;
       border: 1px solid lightgray;
       border-radius: 10px;
       padding: 20px 60px;
       transition: all 0.3s;
+      font-size: 1rem;
+      justify-self: end;
 
       &:hover {
         scale: 105%;
