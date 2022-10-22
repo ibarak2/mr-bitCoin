@@ -1,6 +1,6 @@
 <template>
   <AppHeader />
-  <main class="main-container">
+  <main class="main-container main-content">
     <RouterView />
   </main>
   <AppFooter />
@@ -17,4 +17,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.main-content {
+  min-height: calc(100vh - 130px);
+}
+</style>

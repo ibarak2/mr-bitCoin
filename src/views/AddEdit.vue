@@ -14,7 +14,7 @@
         <span for="phone" class="input-span">Phone</span>
         <input type="text" placeholder="054-1234567" v-model="contact.phone" />
       </div>
-    <div v-else>Loding...</div>
+    <div v-else>Loading...</div>
 
 
       <button v-on:click="onSave" class="btn-save">save</button>
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       contact: null,
-      avatar: shortImgsUrl.avatar
+      avatar: null,
     }
   },
   methods: {
@@ -47,16 +47,18 @@ export default {
     const _id = this.$route.params.id
     if(_id) {
       this.contact = await contactService.getContactById(_id)
+      this.avatar = `https://avatars.dicebear.com/api/micah/:${this.contact._id}.svg`
     } else {
       this.contact = contactService.getEmptyContact()
+      this.avatar = shortImgsUrl.avatar
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .add-edit-contact-wrapper {
-  height: calc(100vh - 215px);
+  // height: calc(100vh - 215px);
 
   .add-edit-contact {
     display: grid;
