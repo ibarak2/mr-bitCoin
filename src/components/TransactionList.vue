@@ -32,6 +32,7 @@
   ul {
     margin-top: 2em;
     margin-left: 2.1em;
+    width: 560px;
   }
   li {
     margin-bottom: 0.5em;
