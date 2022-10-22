@@ -5,20 +5,47 @@
         src="https://res.cloudinary.com/dalkffrhf/image/upload/v1666183736/mr-bitcoin/bitcoin_m1up6x.png"
         class="contact-avatar"
       />
-      <div class="flex contact-inputs">
-        <input type="text" placeholder="Name" />
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Phone" />
+      <div v-if="contact" class="flex contact-inputs">
+        <input v-model="contact.name" type="text" placeholder="Name" />
+        <input v-model="contact.email" type="text" placeholder="Email" />
+        <input v-model="contact.phone" type="text" placeholder="Phone" />
       </div>
+    <div v-else>Loding...</div>
 
-      <button class="btn-save">save</button>
-      <button class="btn-cancel">cancel</button>
+
+      <button v-on:click="onSave" class="btn-save">save</button>
+      <button v-on:click="onBack" class="btn-cancel">cancel</button>
     </form>
   </section>
 </template>
 
 <script>
-export default {}
+import { contactService } from '../services/contacts-service';
+
+export default {
+  data() {
+    return {
+      contact: null,
+    }
+  },
+  methods: {
+    async onSave() {
+      this.$store.dispatch({type: 'saveContact', contact: this.contact})
+      this.$router.back()
+    },
+    onBack() {
+      this.$router.back()
+    }
+  },
+  async created() {
+    const _id = this.$route.params.id
+    if(_id) {
+      this.contact = await contactService.getContactById(_id)
+    } else {
+      this.contact = contactService.getEmptyContact()
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

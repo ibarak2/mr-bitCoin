@@ -26,7 +26,6 @@ export default {
   },
   created() {
     this.loggedinUser = this.$store.getters.loggedinUser
-    console.log('loggedinUser', this.loggedinUser);
     if (!this.loggedinUser && this.$route.fullPath !== '/loginsignup' ) {
       console.log(this.$route.fullPath);
       router.push('/loginsignup')
@@ -44,7 +43,6 @@ export default {
       return this.$store.getters.loggedinUser ? true : false
     },
     loggedinUsername() {
-      console.log(this.$store.getters.loggedinUser);
       return this.$store.getters.loggedinUser.username
     },
     loggedinBalance() {

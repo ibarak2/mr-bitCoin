@@ -21,11 +21,11 @@ const routerOptions = {
       component: LoginSignup
     },
     {
-      path: '/edit',
+      path: '/contacts/edit',
       component: AddEdit
     },
     {
-      path: '/edit/:id',
+      path: '/contacts/edit/:id',
       component: AddEdit
     },
   ]

@@ -23,6 +23,7 @@ export default {
         (contact) => contact._id === contactId
       )
       state.contacts.splice(idx, 1, contact)
+      state.contact = contact
     },
     setContact(state, { contact }) {
       console.log('store', contact)
