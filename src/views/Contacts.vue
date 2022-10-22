@@ -21,7 +21,7 @@ export default {
   align-items: center;
   flex: 1;
   .contacts-list {
-    height: 350px;
+    height: 498px;
     overflow-y: auto;
     flex: 0.4;
     scroll-snap-type: y mandatory;
@@ -31,7 +31,7 @@ export default {
     flex: 0.6;
     border: 1px solid lightgray;
     border-radius: 0 10px 10px 0;
-    height: 350px;
+    height: 498px;
   }
 }
 </style>
