@@ -26,7 +26,6 @@ export default {
       state.contact = contact
     },
     setContact(state, { contact }) {
-      console.log('store', contact)
       state.contact = contact
     }
   },

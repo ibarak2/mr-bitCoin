@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     onSelectedContact() {
-      console.log('id', this.contact._id);
       this.$emit('select-contact', this.contact._id)
     }
   },

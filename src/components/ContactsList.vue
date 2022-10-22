@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     async onSelectedContact(contactId) {
-      console.log('click', contactId)
       this.$store.dispatch({ type: 'loadContactById', contactId })
     },
   },
