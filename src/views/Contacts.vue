@@ -14,12 +14,14 @@
           @open-modal="onOpenModal"
         />
       </div>
-      <div v-if="isModalOpen" class="transfer-modal">
-        <transfer-modal
-          @send-currency="onSendCurrency"
-          @close-modal="onOpenModal"
-        />
-      </div>
+      <Transition>
+        <div v-if="isModalOpen" class="transfer-modal">
+          <transfer-modal
+            @send-currency="onSendCurrency"
+            @close-modal="onOpenModal"
+          />
+        </div>
+      </Transition>
     </article>
   </section>
 </template>
@@ -75,7 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 .contacts-page-wrapper {
-  height: calc(100vh - 215px);
+  // height: calc(100vh - 215px);
   flex-direction: column;
   flex: 1;
   .add-contact {

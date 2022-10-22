@@ -84,7 +84,7 @@ export default {
 
 <style lang="scss" scoped>
 .login-page-wrapper {
-  min-height: calc(100vh - 215px);
+  // min-height: calc(100vh - 215px);
   background-image: url('https://res.cloudinary.com/dalkffrhf/image/upload/v1666183736/mr-bitcoin/blur-gradient-background_xxsw4c.webp');
   background-size: cover;
 

@@ -1,27 +1,27 @@
 <template>
-  <section class="transfer-modal">
-    <div class="from-logged">
-      <h2>From:</h2>
-      <h3>{{loggedinUser.username}}</h3>
-    </div>
+    <section class="transfer-modal">
+      <div class="from-logged">
+        <h2>From:</h2>
+        <h3>{{loggedinUser.username}}</h3>
+      </div>
 
-    <div class="bit-transfer">
-      <img v-bind:src="ff" class="trasfer-arrow" />
-      <input v-model="amount" type="number" class="trasnfer-input" placeholder="insert amount" />
-      BTC
-    </div>
+      <div class="bit-transfer">
+        <img v-bind:src="ff" class="trasfer-arrow" />
+        <input v-model="amount" type="number" class="trasnfer-input" placeholder="insert amount" />
+        BTC
+      </div>
 
-    <div class="to-selected">
-      <h2>To:</h2>
-      <h3>{{contact.name}}</h3>
-    </div>
+      <div class="to-selected">
+        <h2>To:</h2>
+        <h3>{{contact.name}}</h3>
+      </div>
 
-    <div class="summery">
-      <p><span>{{amount}}</span> BTC</p> <!-- span is dynamic and reflect the input value -->
-      <button v-on:click="onAccept" class="btn btn-accept">Accept</button>
-      <button v-on:click="onCloseModal" class="btn btn-cancel">Cancel</button>
-    </div>
-  </section>
+      <div class="summery">
+        <p><span>{{ amount }}</span> BTC</p>
+        <button v-on:click="onAccept" class="btn btn-accept">Accept</button>
+        <button v-on:click="onCloseModal" class="btn btn-cancel">Cancel</button>
+      </div>
+    </section>
 </template>
 
 <script>
@@ -66,9 +66,12 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: lightgreen;
+  transition: all 0.3s;
 
   > * {
     border: 1px solid gold;
+    justify-self: center;
+    align-self: center;
   }
   .from-logged {
     grid-area: 1 / 1 / 3 / 2;
