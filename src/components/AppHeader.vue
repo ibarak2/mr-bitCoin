@@ -5,7 +5,7 @@
 
       <div v-if="isLoggedinUser" class="flex align-center clean-list nav-options">
         <span>Hello {{loggedinUsername}}</span>
-        <span>Balance: ({{loggedinBalance}} Bitcoin)</span>
+        <span>Balance: ({{loggedinBalance}} BTC)</span>
         <RouterLink to="/">Dashboard</RouterLink>
         <RouterLink to="/contacts">Contacts</RouterLink>
         <RouterLink v-on:click="onLogout" to="/loginsignup">Logout</RouterLink>
