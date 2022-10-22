@@ -44,7 +44,6 @@ function sendCurrency(amount, tragetUserId) {
 
 function loggedinUser() {
     const loggedinUser = storageService.load('loggedinUser')
-    console.log('loggedinUser', loggedinUser);
     return loggedinUser
 }
 

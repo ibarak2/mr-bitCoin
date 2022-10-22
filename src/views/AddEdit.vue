@@ -6,23 +6,50 @@
         src="https://res.cloudinary.com/dalkffrhf/image/upload/v1666183736/mr-bitcoin/bitcoin_m1up6x.png"
         class="contact-avatar"
       />
-      <div class="contact-inputs">
+      <div v-if="contact" class="flex contact-inputs">
         <span for="name" class="input-span">Name</span>
-        <input type="text" placeholder="Puki" />
+        <input type="text" placeholder="Puki" v-model="contact.name" />
         <span for="email" class="input-span">Email</span>
-        <input type="text" placeholder="puki@benDavid.com" />
+        <input type="text" placeholder="puki@benDavid.com" v-model="contact.email" />
         <span for="phone" class="input-span">Phone</span>
-        <input type="text" placeholder="054-1234567" />
+        <input type="text" placeholder="054-1234567" v-model="contact.phone" />
       </div>
+    <div v-else>Loding...</div>
 
-      <button class="btn-save">save</button>
-      <button class="btn-cancel">cancel</button>
+
+      <button v-on:click="onSave" class="btn-save">save</button>
+      <button v-on:click="onBack" class="btn-cancel">cancel</button>
     </form>
   </section>
 </template>
 
 <script>
-export default {}
+import { contactService } from '../services/contacts-service';
+
+export default {
+  data() {
+    return {
+      contact: null,
+    }
+  },
+  methods: {
+    async onSave() {
+      this.$store.dispatch({type: 'saveContact', contact: this.contact})
+      this.$router.back()
+    },
+    onBack() {
+      this.$router.back()
+    }
+  },
+  async created() {
+    const _id = this.$route.params.id
+    if(_id) {
+      this.contact = await contactService.getContactById(_id)
+    } else {
+      this.contact = contactService.getEmptyContact()
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

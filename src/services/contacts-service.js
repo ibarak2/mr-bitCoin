@@ -176,19 +176,23 @@ function deleteContact(id) {
 }
 
 function _updateContact(contact) {
+    const contacts = storageService.load('contacts')
     return new Promise((resolve, reject) => {
         const index = contacts.findIndex(c => contact._id === c._id)
         if (index !== -1) {
             contacts[index] = contact
+            storageService.save('contacts', contacts)
         }
         resolve(contact)
     })
 }
 
 function _addContact(contact) {
+    const contacts = storageService.load('contacts')
     return new Promise((resolve, reject) => {
         contact._id = _makeId()
         contacts.push(contact)
+        storageService.save('contacts', contacts)
         resolve(contact)
     })
 }

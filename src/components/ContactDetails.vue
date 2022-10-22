@@ -1,7 +1,9 @@
 <template>
   <section class="flex selected-contact" v-if="contact">
     <button class="btn btn-action btn-edit">
-      <img v-bind:src="editContact" />
+      <RouterLink :to="`/contacts/edit/${contact._id}`">
+        <img v-bind:src="editContact" />
+      </RouterLink>
     </button>
     <div class="contact-img">
       <img v-bind:src="imgUrl" />
