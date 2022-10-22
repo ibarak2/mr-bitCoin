@@ -5,7 +5,8 @@ export const userService = {
     // signup,
     login,
     logout,
-    loggedinUser
+    loggedinUser,
+    sendCurrency
 }
 
 // login('barak')
@@ -13,7 +14,7 @@ export const userService = {
 // loggedinUser()
 async function login(username) {
     const loggedinUser = storageService.load('loggedinUser')
-    if (!loggedinUser || username !== loggedinUser) {
+    if (!loggedinUser || username !== loggedinUser.username) {
         const newUser = {
             username,
             balance: 100,
@@ -26,14 +27,20 @@ async function login(username) {
     }
 }
 
-// async function signup(username) {
-//     try {
-//         storageService.save('loggedinUser', username)
+function sendCurrency(amount, tragetUserId) {
+    const loggedinUser = storageService.load('loggedinUser')
+    if (loggedinUser.balance < amount) return
+    loggedinUser.balance = loggedinUser.balance - amount
+    const newTransaction = {
+        to: tragetUserId,
+        amount,
+        timeStamp: Date.now()
+    }
+    loggedinUser.transactions.push(newTransaction)
 
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
+    storageService.save('loggedinUser', loggedinUser)
+    return true
+}
 
 function loggedinUser() {
     const loggedinUser = storageService.load('loggedinUser')

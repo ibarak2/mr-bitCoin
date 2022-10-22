@@ -4,10 +4,10 @@
       <contacts-list :contacts="filteredContacts"/>
     </div>
     <div class="contacts-details">
-      <contact-details @remove-contact="onRemoveContact"/>
+      <contact-details @remove-contact="onRemoveContact" @open-modal="onOpenModal"/>
     </div>
-    <div class="transfer-modal">
-      <transfer-modal />
+    <div v-if="isModalOpen" class="transfer-modal">
+      <transfer-modal  @send-currency="onSendCurrency" @close-modal="onOpenModal"/>
     </div>
   </section>
 </template>
@@ -16,16 +16,31 @@
 import ContactsList from '../components/ContactsList.vue'
 import ContactDetails from '../components/ContactDetails.vue'
 import TransferModal from '../components/TransferModal.vue'
+import contact from '../store/modules/contact'
 
 export default {
   data() {
     return {
       filterBy: {},
+      isModalOpen: false,
+
     }
   },
   methods: {
     onRemoveContact(contactId) {
       this.$store.dispatch({ type: 'removeContact', contactId })
+    },
+    onOpenModal() {
+      this.isModalOpen = !this.isModalOpen
+    },
+    onSendCurrency(amount) {
+      console.log(amount);
+      const newTransaction = {
+        targetUserId: contact._id,
+        amount
+      }
+      this.$store.dispatch({type: 'sendCurrency', newTransaction})
+      this.onOpenModal()
     }
   },
   computed: {

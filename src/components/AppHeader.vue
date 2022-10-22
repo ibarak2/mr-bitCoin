@@ -34,8 +34,9 @@ export default {
   },
   methods: {
     onLogout() {
-    userService.logout()
+    // userService.logout()
     this.$store.dispatch({type: "logout"})
+    router.push('/loginsignup')
     }
   },
   computed: {

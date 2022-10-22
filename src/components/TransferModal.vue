@@ -2,24 +2,24 @@
   <section class="transfer-modal">
     <div class="from-logged">
       <h2>From:</h2>
-      <h3>loggedinUser</h3>
+      <h3>{{loggedinUser.username}}</h3>
     </div>
 
     <div class="bit-transfer">
       <img v-bind:src="ff" class="trasfer-arrow" />
-      <input type="number" class="trasnfer-input" placeholder="insert amount" />
+      <input v-model="amount" type="number" class="trasnfer-input" placeholder="insert amount" />
       BTC
     </div>
 
     <div class="to-selected">
       <h2>To:</h2>
-      <h3>selected</h3>
+      <h3>{{contact.name}}</h3>
     </div>
 
     <div class="summery">
-      <p><span>X</span> BTC</p> <!-- span is dynamic and reflect the input value -->
-      <button class="btn btn-accept">Accept</button>
-      <button class="btn btn-cancel">Cancel</button>
+      <p><span>{{amount}}</span> BTC</p> <!-- span is dynamic and reflect the input value -->
+      <button v-on:click="onAccept" class="btn btn-accept">Accept</button>
+      <button v-on:click="onCloseModal" class="btn btn-cancel">Cancel</button>
     </div>
   </section>
 </template>
@@ -31,8 +31,26 @@ export default {
   data() {
     return {
       ff: shortImgsUrl.ff,
+      amount: null
     }
   },
+  methods: {
+    onAccept() {
+      if (!this.amount || this.amount > this.loggedinUser.balance) return
+      this.$emit('send-currency', this.amount)
+    },
+    onCloseModal() {
+      this.$emit('close-modal')
+    }
+  },
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
+    },
+    contact() {
+      return this.$store.getters.contact
+    }
+  }
 }
 </script>
 

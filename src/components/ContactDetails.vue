@@ -11,7 +11,7 @@
       <span>{{ contact.phone }}</span>
       <span>{{ contact.email }}</span>
     </div>
-    <button class="flex btn btn-send" @click="onSendBit(contact._id)">
+    <button class="flex btn btn-send" @click="onOpenModal">
       send
       <img v-bind:src="sendCurrency" class="send-icon">
     </button>
@@ -42,6 +42,9 @@ export default {
     },
     onSendBit(contactId) {
       console.log('send', contactId);
+    },
+    onOpenModal() {
+      this.$emit('open-modal')
     }
   },
   computed: {

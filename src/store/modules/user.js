@@ -20,6 +20,13 @@ export default {
         },
         async logout({ commit }) {
             commit({ type: 'logout' })
+        },
+        async sendCurrency({ commit }, { newTransaction }) {
+            const send = await userService.sendCurrency(newTransaction.amount, newTransaction.targetUserId)
+            if (send) {
+                const user = userService.loggedinUser()
+                commit({ type: 'setUser', user })
+            }
         }
     },
     getters: {
