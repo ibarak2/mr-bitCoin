@@ -3,6 +3,7 @@ import { contactService } from '@/services/contacts-service.js'
 export default {
   state: {
     contacts: [],
+    contact: null,
   },
 
   mutations: {
@@ -22,6 +23,10 @@ export default {
       )
       state.contacts.splice(idx, 1, contact)
     },
+    setContact(state, { contact }) {
+      console.log('store', contact)
+      state.contact = contact
+    }
   },
 
   actions: {
@@ -37,11 +42,18 @@ export default {
       await contactService.saveContact(contact)
       commit({ type: 'saveContact', contact })
     },
+    async loadContactById({ commit }, { contactId }) {
+      const contact = await contactService.getContactById(contactId)
+      commit({ type: 'setContact', contact })
+    }
   },
 
   getters: {
     contacts(state) {
       return state.contacts
     },
+    contact(state) {
+      return state.contact
+    }
   },
 }

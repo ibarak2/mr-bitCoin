@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import UserDashboard from '../views/UserDashboard.vue'
 import Contacts from '../views/Contacts.vue'
-import ContactDetails from '../views/ContactDetails.vue'
+// import ContactDetails from '../views/ContactDetails.vue'
 import LoginSignup from '../views/LoginSignup.vue'
 import AddEdit from '../views/AddEdit.vue'
 
@@ -17,10 +17,10 @@ const routerOptions = {
       path: '/contacts',
       component: Contacts
     },
-    {
-      path: '/contact/:id',
-      component: ContactDetails
-    },
+    // {
+    //   path: '/contact/:id',
+    //   component: ContactDetails
+    // },
     {
       path: '/loginsignup',
       component: LoginSignup
