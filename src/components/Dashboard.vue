@@ -1,14 +1,19 @@
 <template>
   <section>
-    <h1>Dashboard</h1>
-    <!-- <p>{{bitcoinPrices}}</p> -->
-    <!-- <p>{{bitcoinPrice}}</p> -->
-    <div class="flex space-evenly block-stats">
-        <BitcoinPrice />
-        <AvgBlockSize />
-    </div>
-    <div class="market-chart">
-        <Chart />
+      <h1>Dashboard</h1>
+    <div class="flex">
+        <div class="flex column block-stats">
+            <div class="flex space-evenly">
+                <BitcoinPrice />
+                <AvgBlockSize />
+            </div>
+            <div v-if="getLoggedinUser.transactions.length">
+                <TransactionList :transactions="getLoggedinUser.transactions" />
+            </div>
+        </div>
+        <div class="market-chart">
+            <Chart />
+        </div>
     </div>
   </section>
 </template>
@@ -18,6 +23,7 @@ import { bitcoinService } from '../services/bitcoin-service';
 import Chart from './Chart.vue';
 import BitcoinPrice from './BitcoinPrice.vue';
 import AvgBlockSize from './AvgBlockSize.vue';
+import TransactionList from './TransactionList.vue';
 
 export default {
     data() {
@@ -34,7 +40,12 @@ export default {
             this.bitcoinPrice = await bitcoinService.getBitcoinPrice();
         }
     },
-    components: { Chart, BitcoinPrice, AvgBlockSize }
+    computed: {
+        getLoggedinUser() {
+            return this.$store.getters.loggedinUser
+        }
+    },
+    components: { Chart, BitcoinPrice, AvgBlockSize, TransactionList }
 }
 
 </script>
@@ -45,11 +56,11 @@ h1 {
     margin: 3em 0;
 }
 .market-chart {
+    width: 50%;
     margin: auto;
-    width: 400px;
 }
 .block-stats{
-    margin-bottom: 3em;
+    width: 50%;
     
 }
 </style>

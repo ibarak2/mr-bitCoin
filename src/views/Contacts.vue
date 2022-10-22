@@ -47,7 +47,7 @@ export default {
     onSendCurrency(amount) {
       console.log(amount)
       const newTransaction = {
-        targetUserId: contact._id,
+        targetUser: this.contact.name,
         amount,
       }
       this.$store.dispatch({ type: 'sendCurrency', newTransaction })

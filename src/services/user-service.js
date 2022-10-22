@@ -27,12 +27,12 @@ async function login(username) {
     }
 }
 
-function sendCurrency(amount, tragetUserId) {
+function sendCurrency(amount, tragetUser) {
     const loggedinUser = storageService.load('loggedinUser')
     if (loggedinUser.balance < amount) return
     loggedinUser.balance = loggedinUser.balance - amount
     const newTransaction = {
-        to: tragetUserId,
+        to: tragetUser,
         amount,
         timeStamp: Date.now()
     }
