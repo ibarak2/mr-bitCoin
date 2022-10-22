@@ -1,7 +1,7 @@
 <template>
     <section class="transaction-list">
         <h3>Transactions</h3>
-        <ul class="flex column clean-list">
+        <ul class="flex column clean-list transactions-container">
             <li v-for="transaction in transactions">
                 <TransactionPreview :transaction="transaction" />
             </li>
@@ -31,11 +31,13 @@
   }
   ul {
     margin-top: 2em;
-    margin-left: 2.1em;
-    width: 560px;
   }
   li {
     margin-bottom: 0.5em;
+  }
+  .transactions-container {
+    height: 570px;
+    overflow-y: auto;
   }
   </style>
   
