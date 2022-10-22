@@ -35,8 +35,6 @@ export default {
 
 <style lang="scss" scoped>
 .contact-list {
-  border: 1px solid lightgray;
-  border-radius: 10px 0 0 10px;
   .contact-card {
     border-bottom: 1px solid lightgray;
     scroll-snap-align: center;

@@ -11,7 +11,7 @@
       <span>{{ contact.phone }}</span>
       <span>{{ contact.email }}</span>
     </div>
-    <button class="flex btn btn-send">
+    <button class="flex btn btn-send" @click="onSendBit(contact._id)">
       send
       <img v-bind:src="sendCurrency" class="send-icon">
     </button>
@@ -39,6 +39,9 @@ export default {
   methods: {
     onRemoveContact(contactId) {
       this.$emit('remove-contact', contactId)
+    },
+    onSendBit(contactId) {
+      console.log('send', contactId);
     }
   },
   computed: {
@@ -63,6 +66,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff77;
+  height: 100%;
 
   > * {
     margin: 0;

@@ -6,12 +6,16 @@
     <div class="contacts-details">
       <contact-details @remove-contact="onRemoveContact"/>
     </div>
+    <div class="transfer-modal">
+      <transfer-modal />
+    </div>
   </section>
 </template>
 
 <script>
 import ContactsList from '../components/ContactsList.vue'
 import ContactDetails from '../components/ContactDetails.vue'
+import TransferModal from '../components/TransferModal.vue'
 
 export default {
   data() {
@@ -40,7 +44,7 @@ export default {
   async created() {
     this.$store.dispatch({ type: 'loadContacts' })
   },
-  components: { ContactsList, ContactDetails },
+  components: { ContactsList, ContactDetails, TransferModal },
 }
 </script>
 
@@ -55,6 +59,8 @@ export default {
     overflow-y: auto;
     flex: 0.4;
     scroll-snap-type: y mandatory;
+    border: 1px solid lightgrey;
+    border-radius: 10px 0 0 10px;
   }
 
   .contacts-details {
