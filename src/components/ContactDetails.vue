@@ -96,7 +96,7 @@ export default {
     font-size: 1rem;
     font-weight: 600;
     &:hover {
-      background-color: darken(cyan, 10%);
+      background-color: darken(#C4FFFE, 20%);
       scale: 105%;
     }
 

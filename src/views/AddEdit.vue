@@ -3,7 +3,7 @@
     <form class="add-edit-contact">
       <h1 class="edit-title">Contact info</h1>
       <img
-        src="https://res.cloudinary.com/dalkffrhf/image/upload/v1666183736/mr-bitcoin/bitcoin_m1up6x.png"
+        v-bind:src="avatar"
         class="contact-avatar"
       />
       <div v-if="contact" class="flex contact-inputs">
@@ -25,11 +25,13 @@
 
 <script>
 import { contactService } from '../services/contacts-service';
+import shortImgsUrl from '@/assets/imgs/imgs.js';
 
 export default {
   data() {
     return {
       contact: null,
+      avatar: shortImgsUrl.avatar
     }
   },
   methods: {

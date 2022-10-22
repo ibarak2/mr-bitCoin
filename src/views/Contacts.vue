@@ -1,15 +1,26 @@
 <template>
-  <section class="flex contacts-page">
-    <button class="add-con"><RouterLink :to="`/contacts/edit`">Add new contact</RouterLink></button>
-    <div class="contacts-list">
-      <contacts-list :contacts="filteredContacts"/>
-    </div>
-    <div class="contacts-details">
-      <contact-details @remove-contact="onRemoveContact" @open-modal="onOpenModal"/>
-    </div>
-    <div v-if="isModalOpen" class="transfer-modal">
-      <transfer-modal  @send-currency="onSendCurrency" @close-modal="onOpenModal"/>
-    </div>
+  <section class="flex contacts-page-wrapper">
+    <button class="add-contact">
+      <RouterLink :to="`/contacts/edit`">Add new contact</RouterLink>
+    </button>
+
+    <article class="flex contacts-page">
+      <div class="contacts-list">
+        <contacts-list :contacts="filteredContacts" />
+      </div>
+      <div class="contacts-details">
+        <contact-details
+          @remove-contact="onRemoveContact"
+          @open-modal="onOpenModal"
+        />
+      </div>
+      <div v-if="isModalOpen" class="transfer-modal">
+        <transfer-modal
+          @send-currency="onSendCurrency"
+          @close-modal="onOpenModal"
+        />
+      </div>
+    </article>
   </section>
 </template>
 
@@ -24,7 +35,6 @@ export default {
     return {
       filterBy: {},
       isModalOpen: false,
-
     }
   },
   methods: {
@@ -35,14 +45,14 @@ export default {
       this.isModalOpen = !this.isModalOpen
     },
     onSendCurrency(amount) {
-      console.log(amount);
+      console.log(amount)
       const newTransaction = {
         targetUserId: contact._id,
-        amount
+        amount,
       }
-      this.$store.dispatch({type: 'sendCurrency', newTransaction})
+      this.$store.dispatch({ type: 'sendCurrency', newTransaction })
       this.onOpenModal()
-    }
+    },
   },
   computed: {
     filteredContacts() {
@@ -54,8 +64,7 @@ export default {
     },
     contact() {
       return this.$store.getters.contact
-
-    }
+    },
   },
   async created() {
     this.$store.dispatch({ type: 'loadContacts' })
@@ -65,11 +74,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contacts-page {
+.contacts-page-wrapper {
   height: calc(100vh - 215px);
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   flex: 1;
+  .add-contact {
+    margin: 1rem;
+    align-self: flex-start;
+    margin: auto 0 0.5rem;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: darken(#C4FFFE, 20%);
+    }
+  }
+}
+.contacts-page {
+  margin-bottom: auto;
   .contacts-list {
     height: 500px;
     overflow-y: auto;
