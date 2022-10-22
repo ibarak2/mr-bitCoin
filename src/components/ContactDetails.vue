@@ -15,7 +15,7 @@
       send
       <img v-bind:src="sendCurrency" class="send-icon">
     </button>
-    <button class="btn btn-action btn-delete">
+    <button @click="onRemoveContact(contact._id)" class="btn btn-action btn-delete">
       <img v-bind:src="deleteContact" />
     </button>
   </section>
@@ -34,6 +34,11 @@ export default {
       editContact: shortImgsUrl.edit,
       deleteContact: shortImgsUrl.delete,
       sendCurrency: shortImgsUrl.send,
+    }
+  },
+  methods: {
+    onRemoveContact(contactId) {
+      this.$emit('remove-contact', contactId)
     }
   },
   computed: {

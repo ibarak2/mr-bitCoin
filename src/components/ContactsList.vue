@@ -2,7 +2,7 @@
   <section class="contact-list">
     <div
       class="contact-card"
-      v-for="contact in filteredContacts"
+      v-for="contact in contacts"
       v-bind:key="contact._id"
     >
       <contact-preview
@@ -17,30 +17,13 @@
 import ContactPreview from './ContactPreview.vue'
 
 export default {
-  data() {
-    return {
-      filterBy: {},
+  props: {
+    contacts: {
+      type: Array,
+      required: true
     }
   },
-  async created() {
-    this.$store.dispatch({ type: 'loadContacts' })
-  },
-  computed: {
-    contacts() {
-      return this.$store.getters.contacts
-    },
-    contact() {
-      return this.$store.getters.contact
-    },
-    filteredContacts() {
-      const regex = new RegExp(this.filterBy.text, 'i')
-      return this.contacts.filter((contact) => regex.test(contact.name))
-    },
-  },
   methods: {
-    async onRemoveContact(contactId) {
-      this.$store.dispatch({ type: 'removeContact', contactId })
-    },
     async onSelectedContact(contactId) {
       console.log('click', contactId)
       this.$store.dispatch({ type: 'loadContactById', contactId })

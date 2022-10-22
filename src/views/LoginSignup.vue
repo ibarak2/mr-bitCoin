@@ -81,7 +81,7 @@ export default {
     async onLogin() {
       const username = this.username
       await userService.login(username)
-      this.$store.dispatch({type: "setUser", username})
+      this.$store.dispatch({type: "setUser"})
 
       router.push('/')
     }

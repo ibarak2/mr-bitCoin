@@ -1,7 +1,11 @@
 <template>
   <section class="flex contacts-page">
-    <contacts-list class="contacts-list" />
-    <contact-details class="contacts-details" />
+    <div class="contacts-list">
+      <contacts-list :contacts="filteredContacts"/>
+    </div>
+    <div class="contacts-details">
+      <contact-details @remove-contact="onRemoveContact"/>
+    </div>
   </section>
 </template>
 
@@ -10,6 +14,32 @@ import ContactsList from '../components/ContactsList.vue'
 import ContactDetails from '../components/ContactDetails.vue'
 
 export default {
+  data() {
+    return {
+      filterBy: {},
+    }
+  },
+  methods: {
+    onRemoveContact(contactId) {
+      this.$store.dispatch({ type: 'removeContact', contactId })
+    }
+  },
+  computed: {
+    filteredContacts() {
+      const regex = new RegExp(this.filterBy.text, 'i')
+      return this.contacts.filter((contact) => regex.test(contact.name))
+    },
+    contacts() {
+      return this.$store.getters.contacts
+    },
+    contact() {
+      return this.$store.getters.contact
+
+    }
+  },
+  async created() {
+    this.$store.dispatch({ type: 'loadContacts' })
+  },
   components: { ContactsList, ContactDetails },
 }
 </script>

@@ -15,6 +15,7 @@ export default {
         (contact) => contact._id === contactId
       )
       state.contacts.splice(idx, 1)
+      state.contact = null
     },
     saveContact(state, { contact }) {
       const contactId = contact._id
