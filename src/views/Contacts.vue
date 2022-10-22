@@ -1,6 +1,6 @@
 <template>
   <section class="flex contacts-page">
-    <button class="add-con"><RouterLink :to="/contacts/edit">Add new contact</RouterLink></button>
+    <button class="add-con"><RouterLink :to="`/contacts/edit`">Add new contact</RouterLink></button>
     <div class="contacts-list">
       <contacts-list :contacts="filteredContacts"/>
     </div>
