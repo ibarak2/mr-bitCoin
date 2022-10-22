@@ -26,7 +26,7 @@
   
   <style lang="scss" scoped>
   h3 {
-    margin-top: 1em;
+    margin-top: 1.5em;
     text-align: center;
   }
   ul {
