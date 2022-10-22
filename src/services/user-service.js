@@ -14,8 +14,13 @@ export const userService = {
 async function login(username) {
     const loggedinUser = storageService.load('loggedinUser')
     if (!loggedinUser || username !== loggedinUser) {
+        const newUser = {
+            username,
+            balance: 100,
+            transactions: []
+        }
         console.log("new Login!: ", username);
-        storageService.save('loggedinUser', username)
+        storageService.save('loggedinUser', newUser)
     } else {
         console.log("logged in:", loggedinUser);
     }

@@ -4,6 +4,8 @@
       <span class="logo">Mr-Bitcoin</span>
 
       <div v-if="isLoggedinUser" class="flex align-center clean-list nav-options">
+        <span>Hello {{loggedinUsername}}</span>
+        <span>Balance: ({{loggedinBalance}} Bitcoin)</span>
         <RouterLink to="/">Dashboard</RouterLink>
         <RouterLink to="/contacts">Contacts</RouterLink>
         <RouterLink v-on:click="onLogout" to="/loginsignup">Logout</RouterLink>
@@ -39,7 +41,15 @@ export default {
   computed: {
     isLoggedinUser() {
       return this.$store.getters.loggedinUser ? true : false
+    },
+    loggedinUsername() {
+      console.log(this.$store.getters.loggedinUser);
+      return this.$store.getters.loggedinUser.username
+    },
+    loggedinBalance() {
+      return this.$store.getters.loggedinUser.balance
     }
+    
   }
 }
 </script>

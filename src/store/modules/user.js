@@ -5,8 +5,8 @@ export default {
         loggedinUser: userService.loggedinUser()
     },
     mutations: {
-        setUser(state, { username }) {
-            state.loggedinUser = username
+        setUser(state, { user }) {
+            state.loggedinUser = user
         },
         logout(state) {
             state.loggedinUser = null
@@ -14,8 +14,9 @@ export default {
 
     },
     actions: {
-        async setUser({ commit }, { username }) {
-            commit({ type: 'setUser', username })
+        async setUser({ commit }) {
+            const user = userService.loggedinUser()
+            commit({ type: 'setUser', user })
         },
         async logout({ commit }) {
             commit({ type: 'logout' })

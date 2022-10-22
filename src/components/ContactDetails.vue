@@ -12,7 +12,7 @@
     <div class="contact-btns">
       <button class="btn btn-send">send</button>
       <button class="btn btn-edit">edit</button>
-      <button class="btn btn-delete">delete</button>
+      <button @click="onRemoveContact(contact._id)" class="btn btn-delete">delete</button>
     </div>
   </section>
   <section v-else>
@@ -22,6 +22,11 @@
 
 <script>
 export default {
+  methods: {
+    onRemoveContact(contactId) {
+      this.$emit('remove-contact', contactId)
+    }
+  },
   computed: {
     contact() {
       return this.$store.getters.contact

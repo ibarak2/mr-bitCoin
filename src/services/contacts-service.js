@@ -1,3 +1,6 @@
+import { storageService } from '@/services/storage.service.js'
+
+
 export const contactService = {
     getContacts,
     getContactById,
@@ -6,7 +9,7 @@ export const contactService = {
     getEmptyContact
 }
 
-const contacts = [
+const demoContacts = [
     {
         "_id": "5a56640269f443a5d64b32ca",
         "name": "Ochoa Hyde",
@@ -139,7 +142,11 @@ function sort(arr) {
 
 function getContacts(filterBy = null) {
     return new Promise((resolve, reject) => {
-        var contactsToReturn = contacts;
+        var contactsToReturn = storageService.load('contacts')
+        if (!contactsToReturn || !contactsToReturn.length) {
+            storageService.save('contacts', demoContacts)
+            contactsToReturn = demoContacts
+        }
         if (filterBy && filterBy.term) {
             contactsToReturn = filter(filterBy.term)
         }
@@ -149,19 +156,22 @@ function getContacts(filterBy = null) {
 
 function getContactById(id) {
     return new Promise((resolve, reject) => {
+        const contacts = storageService.load('contacts')
         const contact = contacts.find(contact => contact._id === id)
         contact ? resolve(contact) : reject(`Contact id ${id} not found!`)
     })
 }
 
 function deleteContact(id) {
+    const contacts = storageService.load('contacts')
     return new Promise((resolve, reject) => {
         const index = contacts.findIndex(contact => contact._id === id)
         if (index !== -1) {
             contacts.splice(index, 1)
         }
+        storageService.save('contacts', contacts)
 
-        resolve(contacts)
+        resolve()
     })
 }
 
