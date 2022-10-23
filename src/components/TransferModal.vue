@@ -1,27 +1,33 @@
 <template>
-    <section class="transfer-modal">
-      <div class="from-logged">
-        <h2>From:</h2>
-        <h3>{{loggedinUser.username}}</h3>
-      </div>
+  <section class="transfer-modal">
+    <div class="from-logged">
+      <h2>From:</h2>
+      <h3>{{ loggedinUser.username }}</h3>
+    </div>
 
-      <div class="bit-transfer">
-        <img v-bind:src="ff" class="trasfer-arrow" />
-        <input v-model="amount" type="number" class="trasnfer-input" placeholder="insert amount" />
-        BTC
-      </div>
+    <div class="bit-transfer">
+      <img v-bind:src="ff" class="trasfer-arrow" />
+      <input
+        v-model="amount"
+        type="number"
+        class="trasnfer-input"
+        placeholder="insert amount"
+      />
+    </div>
 
-      <div class="to-selected">
-        <h2>To:</h2>
-        <h3>{{contact.name}}</h3>
-      </div>
+    <div class="to-selected">
+      <h2>To:</h2>
+      <h3>{{ contact.name }}</h3>
+    </div>
 
-      <div class="summery">
-        <p><span>{{ amount }}</span> BTC</p>
-        <button v-on:click="onAccept" class="btn btn-accept">Accept</button>
-        <button v-on:click="onCloseModal" class="btn btn-cancel">Cancel</button>
-      </div>
-    </section>
+    <div class="summery">
+      <p class="summery-text">
+        <span>{{ amount }}</span> BTC
+      </p>
+      <button v-on:click="onAccept" class="btn btn-accept">Accept</button>
+      <button v-on:click="onCloseModal" class="btn btn-cancel">Cancel</button>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -31,7 +37,7 @@ export default {
   data() {
     return {
       ff: shortImgsUrl.ff,
-      amount: null
+      amount: null,
     }
   },
   methods: {
@@ -41,7 +47,7 @@ export default {
     },
     onCloseModal() {
       this.$emit('close-modal')
-    }
+    },
   },
   computed: {
     loggedinUser() {
@@ -49,8 +55,8 @@ export default {
     },
     contact() {
       return this.$store.getters.contact
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -58,20 +64,24 @@ export default {
 .transfer-modal {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr) 220px;
   width: 700px;
-  height: 500px;
+  height: 400px;
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: lightgreen;
+  background-color: rgb(237, 237, 237);
+  border: 5px solid rgba(194, 194, 194, 0.5);
+  border-radius: 10px;
   transition: all 0.3s;
-
   > * {
-    border: 1px solid gold;
     justify-self: center;
     align-self: center;
+  }
+  h2 {
+    margin-bottom: 1rem;
+    text-decoration: underline;
   }
   .from-logged {
     grid-area: 1 / 1 / 3 / 2;
@@ -79,6 +89,10 @@ export default {
 
   .bit-transfer {
     grid-area: 1 / 2 / 3 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     .trasfer-arrow {
       width: 50px;
     }
@@ -86,6 +100,17 @@ export default {
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    }
+    .trasnfer-input {
+      text-align: center;
+      outline: none;
+      border: 1px solid rgb(155, 155, 155);
+      border-radius: 4px;
+      padding: 5px;
+
+      &:focus {
+        border: 1px solid black;
+      }
     }
   }
 
@@ -95,6 +120,33 @@ export default {
 
   .summery {
     grid-area: 3 / 1 / 4 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .summery-text {
+      font-weight: bold;
+    }
+    .btn {
+      border-radius: 4px;
+      padding: 10px 20px;
+      transition: all 0.3s;
+    }
+    .btn-accept {
+      font-weight: bold;
+      &:hover {
+        background-color: darken(#c4fffe, 20%);
+      }
+    }
+    .btn-cancel {
+      background-color: transparent;
+      border: 1px solid rgb(140, 140, 140);
+
+      &:hover {
+        color: #fff;
+        background-color: rgb(148, 148, 148);
+      }
+    }
   }
 }
 </style>

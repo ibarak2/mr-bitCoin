@@ -70,7 +70,6 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff77;
   height: 500px;
 
   > * {

@@ -77,13 +77,12 @@ export default {
 
 <style lang="scss" scoped>
 .contacts-page-wrapper {
-  // height: calc(100vh - 215px);
   flex-direction: column;
   flex: 1;
+  background-color: #F9F7F6;
   .add-contact {
-    margin: 1rem;
     align-self: flex-start;
-    margin: auto 0 0.5rem;
+    margin: auto 1rem .5rem;
     border-radius: 4px;
     font-family: inherit;
     font-size: 1rem;
@@ -95,6 +94,8 @@ export default {
 }
 .contacts-page {
   margin-bottom: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
   .contacts-list {
     height: 500px;
     overflow-y: auto;
@@ -102,11 +103,13 @@ export default {
     scroll-snap-type: y mandatory;
     border: 1px solid lightgrey;
     border-radius: 10px 0 0 10px;
+
   }
 
   .contacts-details {
     flex: 0.6;
-    border: 1px solid lightgray;
+    background-color: rgb(239, 243, 245);
+    border: 1px solid lightgrey;
     border-radius: 0 10px 10px 0;
     height: 500px;
   }

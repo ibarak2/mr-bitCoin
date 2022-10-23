@@ -41,7 +41,7 @@ export default {
     height: 72px;
 
     &:hover {
-      background-color: #e8e8e8;
+      background-color: rgb(239, 243, 245);
     }
   }
 }

@@ -2,20 +2,20 @@
   <section class="flex add-edit-contact-wrapper">
     <form class="add-edit-contact">
       <h1 class="edit-title">Contact info</h1>
-      <img
-        v-bind:src="avatar"
-        class="contact-avatar"
-      />
+      <img v-bind:src="avatar" class="contact-avatar" />
       <div v-if="contact" class="flex contact-inputs">
         <span for="name" class="input-span">Name</span>
         <input type="text" placeholder="Puki" v-model="contact.name" />
         <span for="email" class="input-span">Email</span>
-        <input type="text" placeholder="puki@benDavid.com" v-model="contact.email" />
+        <input
+          type="text"
+          placeholder="puki@benDavid.com"
+          v-model="contact.email"
+        />
         <span for="phone" class="input-span">Phone</span>
         <input type="text" placeholder="054-1234567" v-model="contact.phone" />
       </div>
-    <div v-else>Loading...</div>
-
+      <div v-else>Loading...</div>
 
       <button v-on:click="onSave" class="btn-save">save</button>
       <button v-on:click="onBack" class="btn-cancel">cancel</button>
@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import { contactService } from '../services/contacts-service';
-import shortImgsUrl from '@/assets/imgs/imgs.js';
+import { contactService } from '../services/contacts-service'
+import shortImgsUrl from '@/assets/imgs/imgs.js'
 
 export default {
   data() {
@@ -36,16 +36,16 @@ export default {
   },
   methods: {
     async onSave() {
-      this.$store.dispatch({type: 'saveContact', contact: this.contact})
+      this.$store.dispatch({ type: 'saveContact', contact: this.contact })
       this.$router.back()
     },
     onBack() {
       this.$router.back()
-    }
+    },
   },
   async created() {
     const _id = this.$route.params.id
-    if(_id) {
+    if (_id) {
       this.contact = await contactService.getContactById(_id)
       this.avatar = `https://avatars.dicebear.com/api/micah/:${this.contact._id}.svg`
     } else {
@@ -58,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .add-edit-contact-wrapper {
-  // height: calc(100vh - 215px);
+  background-color: #f9f7f6;
 
   .add-edit-contact {
     display: grid;
@@ -73,6 +73,7 @@ export default {
     padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 10px;
+    background-color: rgb(239, 243, 245);
 
     .edit-title {
       grid-area: 1 / 1 / 2 / 3;
