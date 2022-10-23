@@ -22,7 +22,6 @@ export default {
             commit({ type: 'logout' })
         },
         async sendCurrency({ commit }, { newTransaction }) {
-            console.log(newTransaction);
             const send = await userService.sendCurrency(newTransaction.amount, newTransaction.targetUser)
             if (send) {
                 const user = userService.loggedinUser()

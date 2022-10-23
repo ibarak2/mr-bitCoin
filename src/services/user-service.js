@@ -2,16 +2,12 @@ import { storageService } from '@/services/storage.service.js'
 
 
 export const userService = {
-    // signup,
     login,
     logout,
     loggedinUser,
     sendCurrency
 }
 
-// login('barak')
-// logout()
-// loggedinUser()
 async function login(username) {
     const loggedinUser = storageService.load('loggedinUser')
     if (!loggedinUser || username !== loggedinUser.username) {

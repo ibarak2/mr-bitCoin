@@ -63,6 +63,7 @@ export default {
 <style lang="scss" scoped>
 .please-select {
   justify-content: center;
+  margin: 1rem;
 }
 
 .selected-contact {
