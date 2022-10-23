@@ -91,7 +91,7 @@ import { bitcoinService } from '../services/bitcoin-service'
 
 <style lang="scss" scoped>
 * {
-  margin: 0 3em 3em;
+  // margin: 0 3em 3em;
   padding: 1em;
   border-radius: 6px;
   background-color: #fff;

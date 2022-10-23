@@ -1,9 +1,9 @@
 <template>
   <section>
       <h1>Dashboard</h1>
-    <div class="flex">
+    <div class="flex main-dashboard">
         <div class="flex column block-stats">
-            <div class="flex space-evenly">
+            <div class="flex space-between">
                 <BitcoinPrice />
                 <AvgBlockSize />
             </div>
@@ -51,13 +51,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main-dashboard{
+    gap:1em;
+    margin: 0 1em;
+}
 h1 {
     text-align: center;
-    margin: 3em 0;
+    font-size: 3em;
+    margin: 1em 0 ;
 }
 .market-chart {
     width: 50%;
-    margin: auto;
+    margin: 0 0 auto;
 }
 .block-stats{
     width: 50%;
