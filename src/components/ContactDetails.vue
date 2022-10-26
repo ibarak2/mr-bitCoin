@@ -80,11 +80,22 @@ export default {
     width: 20%;
   }
   .contact-name {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    @media (min-width: 750px) {
+      font-size: 2.5rem;
+    }
   }
   .contact-info {
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+    font-size: 0.875em;
+    @media (min-width: 750px) {
+      font-size: 1em;
+      flex-direction: row;
+    }
   }
   .btn-send {
     padding: 20px 60px;

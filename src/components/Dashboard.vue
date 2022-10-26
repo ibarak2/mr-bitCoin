@@ -1,9 +1,9 @@
 <template>
   <section>
       <h1>Dashboard</h1>
-    <div class="flex main-dashboard">
+    <div class="main-dashboard">
         <div class="flex column block-stats">
-            <div class="flex space-between">
+            <div class="flex blocks">
                 <BitcoinPrice />
                 <AvgBlockSize />
             </div>
@@ -52,8 +52,15 @@ export default {
 
 <style lang="scss" scoped>
 .main-dashboard{
-    gap:1em;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
     margin: 0 1em;
+    gap:1em;
+    @media (min-width: 900px ) {
+        flex-direction: row;
+    }
+
 }
 h1 {
     text-align: center;
@@ -61,11 +68,33 @@ h1 {
     margin: 1em 0 ;
 }
 .market-chart {
-    width: 50%;
+    width: 90%;
     margin: 0 0 auto;
-}
-.block-stats{
+    @media (min-width: 900px ) {
     width: 50%;
+
+    }
+
+}
+
+.block-stats{
+    width: 90%;
+    & .blocks {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        @media (min-width: 480px) {
+            flex-direction: row;
+        }
+        @media (min-width: 900px ) {
+            justify-content: space-between;
+
+        }
+    }
+
+    @media (min-width: 900px ) {
+        width: 50%;
+    }
     
 }
 </style>

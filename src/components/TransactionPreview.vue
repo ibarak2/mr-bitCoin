@@ -33,10 +33,16 @@ export default {
     flex: 1;
     .item-title {
         font-weight: bold;
-        flex:0.2
+        flex:0.3;
+        @media (min-width: 480px) {
+            flex:0.2;
+        }
     }
     .item-content {
-        flex: 0.8;
+        flex: 0.7;
+        @media (min-width: 480px) {
+            flex:0.8;
+        }
     }
 }
 </style>

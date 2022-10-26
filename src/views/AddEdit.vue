@@ -37,10 +37,10 @@ export default {
   methods: {
     async onSave() {
       this.$store.dispatch({ type: 'saveContact', contact: this.contact })
-      this.$router.back()
+      this.$router.push('/contacts')
     },
     onBack() {
-      this.$router.back()
+      this.$router.push('/contacts')
     },
   },
   async created() {
@@ -69,11 +69,15 @@ export default {
     width: 100%;
     height: 500px;
     margin: auto;
-    gap: 2rem;
+    gap: 1rem;
     padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 10px;
     background-color: rgb(239, 243, 245);
+    
+    @media (min-width:800px) {
+      gap: 2rem;
+    }
 
     .edit-title {
       grid-area: 1 / 1 / 2 / 3;
@@ -85,14 +89,34 @@ export default {
     .contact-avatar {
       grid-area: 2 / 1 / 3 / 2;
       justify-self: end;
+      width: 4em;
+      height: 4em;
+      @media (min-width: 800px) {
+        width: 200px;
+        height: 200px;
+      }
     }
     .contact-inputs {
       grid-area: 2 / 2 / 3 / 3;
       gap: 0.5rem;
       display: grid;
       grid-template-columns: 45px 150px;
-      width: 300px;
+      width: 120px;
       justify-self: start;
+
+
+      input {
+        width: 100px;
+      }
+      
+      @media (min-width:800px) {
+        width: 300px;
+        input {
+          width: 200px;
+        }
+
+      }
+
       > * {
         outline: none;
         border: 1px solid lightgray;
@@ -113,12 +137,18 @@ export default {
     }
     .btn-save {
       grid-area: 3 / 2 / 4 / 3;
-      padding: 20px 60px;
+      padding: 10px 20px;
       border-radius: 10px;
       transition: all 0.3s;
       font-size: 1rem;
       font-weight: 600;
       justify-self: start;
+      width: 130px;
+      
+      @media (min-width: 800px) {
+        padding: 20px 60px;
+        width: 200px;
+      }
 
       &:hover {
         background-color: darken(cyan, 10%);
@@ -130,10 +160,16 @@ export default {
       background-color: transparent;
       border: 1px solid lightgray;
       border-radius: 10px;
-      padding: 20px 60px;
+      padding: 10px 20px;
       transition: all 0.3s;
       font-size: 1rem;
       justify-self: end;
+      width: 130px;
+
+      @media (min-width: 800px) {
+        padding: 20px 60px;
+        width: 200px;
+      }
 
       &:hover {
         scale: 105%;

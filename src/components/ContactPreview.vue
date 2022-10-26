@@ -35,8 +35,13 @@ export default {
   padding: 10px;
   gap: 5px;
   .contact-img {
-    width: 50px;
-    height: 50px;
+    width: 2em;
+    height: 2em;
+    @media (min-width: 750px) {
+      width: 50px;
+      height: 50px;
+
+    }
   }
   .contact-name {
     flex: 1;

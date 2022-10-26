@@ -97,5 +97,6 @@ import { bitcoinService } from '../services/bitcoin-service'
   background-color: #fff;
   border: 1px solid rgb(238, 238, 238);
 
+  
 }
 </style>

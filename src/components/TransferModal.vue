@@ -65,7 +65,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr) 220px;
-  width: 700px;
+  width: 100%;
   height: 400px;
   position: absolute;
   top: 40%;
@@ -75,6 +75,12 @@ export default {
   border: 5px solid rgba(194, 194, 194, 0.5);
   border-radius: 10px;
   transition: all 0.3s;
+  
+  @media (min-width: 800px) {
+    width: 700px;
+    
+  }
+
   > * {
     justify-self: center;
     align-self: center;
@@ -107,6 +113,11 @@ export default {
       border: 1px solid rgb(155, 155, 155);
       border-radius: 4px;
       padding: 5px;
+      width:80%;
+
+      @media (min-width: 800px) {
+        width:100%;
+      }
 
       &:focus {
         border: 1px solid black;

@@ -31,11 +31,22 @@ export default {}
   gap: 1rem;
   .logo {
     color: #0052ff;
-    font-size: 1.7rem;
+    font-size: 1rem;
     font-weight: bold;
+    
+    @media (min-width: 900px) {
+      font-size: 1.7rem;
+
+    }
   }
 }
 .social-network {
-  gap: 2em;
+  gap: 1em;
+  font-size: 0.75em;
+  @media (min-width: 900px) {
+    gap: 2em;
+    font-size: 1em;
+
+  }
 }
 </style>

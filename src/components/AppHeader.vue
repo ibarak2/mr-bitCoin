@@ -1,14 +1,28 @@
 <template>
   <section class="main-container main-nav">
     <nav class="flex align-center space-between">
-      <span class="logo">Mr-Bitcoin</span>
+      <RouterLink to="/" class="logo">Mr-Bitcoin</RouterLink>
 
-      <div v-if="isLoggedinUser" class="flex align-center clean-list nav-options">
+      <div v-if="isLoggedinUser" class="clean-list nav-options">
         <span>Hello {{loggedinUsername}}</span>
         <span>Balance: ({{loggedinBalance}} BTC)</span>
-        <RouterLink to="/">Dashboard</RouterLink>
-        <RouterLink to="/contacts">Contacts</RouterLink>
-        <RouterLink v-on:click="onLogout" to="/loginsignup">Logout</RouterLink>
+        <div v-if="windowWidth <900">
+          <button @click="navOpen=!navOpen" v-bind:class="{active:navOpen}" class="burgir-btn">
+            <span class="top"></span>
+            <span class="mid"></span>
+            <span class="bottom"></span>
+          </button>
+          <div v-show="navOpen" class="clean-list burgir">
+            <RouterLink to="/">Dashboard</RouterLink>
+            <RouterLink to="/contacts">Contacts</RouterLink>
+            <RouterLink v-on:click="onLogout" to="/loginsignup">Logout</RouterLink>
+          </div>
+        </div>
+        <div v-else class="nav-options">
+          <RouterLink to="/">Dashboard</RouterLink>
+            <RouterLink to="/contacts">Contacts</RouterLink>
+            <RouterLink v-on:click="onLogout" to="/loginsignup">Logout</RouterLink>
+        </div>
       </div>
     </nav>
     </section>
@@ -16,12 +30,13 @@
 
 <script>
 import router from '../router';
-import { userService } from '../services/user-service';
 
 export default {
   data() {
     return {
-      loggedinUser: null
+      loggedinUser: null,
+      navOpen: false,
+      windowWidth: window.innerWidth
     }
   },
   created() {
@@ -31,11 +46,20 @@ export default {
       router.push('/loginsignup')
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.onResize);
+  },
+  beforeDestroy() { 
+    window.removeEventListener('resize', this.onResize); 
+  },
   methods: {
     onLogout() {
     // userService.logout()
     this.$store.dispatch({type: "logout"})
     router.push('/loginsignup')
+    },
+    onResize() {
+      this.windowWidth = window.innerWidth
     }
   },
   computed: {
@@ -61,6 +85,8 @@ export default {
   color: #050F19;
  }
  .nav-options {
+  display: flex;
+  align-items: center;
   font-size: 1em;
   font-weight: bold;
   gap: 2em;
@@ -71,11 +97,83 @@ export default {
     }
   }
  }
+
+ .burgir {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  font-weight: bold;
+  width: 200px;
+  top: 0;
+  right: 0;
+  background: grey;
+  padding-top: 66px;
+  padding-bottom: 66px;
+  text-align: center;
+  z-index: 10;
+  
+  // transform: translateX(120px);
+  // gap: 2em;
+  // @media (min-width:900px) {
+  //   position: unset;
+  //   flex-direction: row;
+  //   gap: 2em;
+
+  // }
+ }
  
  .logo {
   color: #0052FF;
   font-size: 1.7em;
   font-weight: bold;
+ }
+
+ .burgir-btn {
+  display: block;
+			width: 50px;
+			height: 50px;
+			background: grey;
+			border: none;
+			position: relative;
+			z-index: 100;
+			appearance: none;
+			cursor: pointer;
+			outline: none;
+
+			span {
+				display: block;
+				width: 20px;
+				height: 2px;
+				margin: auto;
+				background: white;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				transition: all .4s ease;
+
+				&.top {
+					transform: translateY(-8px);
+				}
+
+				&.bottom {
+					transform: translateY(8px);
+				}
+			}
+			&.active{
+				.top {
+					transform: rotate(-45deg);
+				}
+				.mid{
+					transform: translateX(-20px) rotate(360deg);
+					opacity: 0;
+				}
+				.bottom {
+					transform: rotate(45deg);
+				}
+			}
  }
  
 </style>
